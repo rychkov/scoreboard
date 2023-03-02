@@ -3,6 +3,8 @@ package uedp.scoreboard.model;
 import lombok.Getter;
 import uedp.scoreboard.exceptions.ValidationException;
 
+import java.util.Objects;
+
 @Getter
 public class Score {
     private final int home;
@@ -12,7 +14,6 @@ public class Score {
         home = 0;
         away = 0;
     }
-
 
     /**
      * Create score object.
@@ -42,5 +43,19 @@ public class Score {
         if (awayScore < 0) {
             throw new ValidationException("Away score can't be negative");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Score score = (Score) o;
+        return home == score.home &&
+               away == score.away;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(home, away);
     }
 }

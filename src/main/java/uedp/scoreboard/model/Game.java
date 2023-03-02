@@ -11,12 +11,27 @@ public class Game {
     private final Instant startTime;
     private final Team homeTeam;
     private final Team awayTeam;
+    private final Score score;
 
-    public Game(Team homeTeam, Team awayTeam) {
+    private Game(Instant start, Team homeTeam, Team awayTeam, Score score) {
         validateTeams(homeTeam, awayTeam);
-        startTime = Instant.now();
+        validateScore(score);
+        validateStartTime(start);
+        startTime = start;
+        this.score = score;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
+    }
+
+    public Game(Team homeTeam, Team awayTeam) {
+        this(Instant.now(), homeTeam, awayTeam, new Score());
+    }
+
+    public static Game from(Game game, Score score) {
+        if (game == null) {
+            throw new NullPointerException("Game can't be null");
+        }
+        return new Game(game.startTime, game.homeTeam, game.awayTeam, score);
     }
 
     private void validateTeams(Team homeTeam, Team awayTeam) {
@@ -28,6 +43,18 @@ public class Game {
         }
         if (homeTeam.equals(awayTeam)) {
             throw new ValidationException("Single team game not allowed");
+        }
+    }
+
+    private void validateScore(Score score) {
+        if (score == null) {
+            throw new NullPointerException("Score can't be null");
+        }
+    }
+
+    private void validateStartTime(Instant startTime) {
+        if (startTime == null) {
+            throw new NullPointerException("Start time can't be null");
         }
     }
 

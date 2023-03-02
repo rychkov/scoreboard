@@ -12,6 +12,20 @@ class GameTest {
     public static final String ANOTHER_TEAM_NAME = "Another Team";
 
     @Test
+    @DisplayName("Game from null game not allowed")
+    public void game_from_null_game_not_allowed() {
+        assertThrows(NullPointerException.class, () -> Game.from(null, new Score()));
+    }
+
+    @Test
+    @DisplayName("Game without score not allowed")
+    public void game_without_score_not_allowed() {
+        var game = new Game(new Team(TEAM_NAME), new Team(ANOTHER_TEAM_NAME));
+
+        assertThrows(NullPointerException.class, () -> Game.from(game, null));
+    }
+
+    @Test
     @DisplayName("Game without teams not allowed")
     public void game_without_teams_not_allowed() {
         assertThrows(NullPointerException.class, () -> new Game(null, null));
