@@ -3,6 +3,8 @@ Live Football World Cup Scoreboard
 
 Assumptions
 -----------
+Java version >= 11
+Maven
 
 Score
 -----
@@ -24,3 +26,11 @@ Team
 * Team may be listed on the scoreboard only once because only one active game for one team allowed.
 * We don't allow teams with null or blank names.
 * We don't modify the team name if it's not blank.
+
+TODO
+----
+* Test refactoring
+* Add caching
+* Add thread safety
+* Improve performance
+* TBD
