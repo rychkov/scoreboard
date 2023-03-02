@@ -11,6 +11,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TeamTest {
 
+    public static final String TEAM_NAME = "Team";
+    public static final String ANOTHER_TEAM_NAME = "Another Team";
+
     @Test
     @DisplayName("Null name for the team not allowed")
     public void null_name_not_allowed() {
@@ -32,5 +35,17 @@ class TeamTest {
         var team = new Team(name);
 
         assertEquals(name, team.getName());
+    }
+
+    @Test
+    @DisplayName("Equals test")
+    public void equals_test() {
+        assertEquals(new Team(TEAM_NAME), new Team(TEAM_NAME));
+    }
+
+    @Test
+    @DisplayName("Not equals test")
+    public void not_equals_test() {
+        assertNotEquals(new Team(TEAM_NAME), new Team(ANOTHER_TEAM_NAME));
     }
 }
