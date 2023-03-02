@@ -7,7 +7,16 @@ Assumptions
 Score
 -----
 * Score must be non negative.
-* 
+* We do not check the score of the game for not decreasing. 
+Valid situation
+```
+0 - 0
+1 - 0
+1 - 5
+3 - 0 
+```
+The correctness of the game score is controlled by the source of the game score.
+
 
 Team
 ----
